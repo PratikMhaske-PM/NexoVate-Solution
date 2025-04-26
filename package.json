@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "private": true,
-  "homepage": "https://PratikMhaske-PM.github.io/NexoVate-Solution",
+  "homepage": "https://github.com/PratikMhaske-PM/NexoVate-Solution",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
