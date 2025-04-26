@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import emailjs from 'emailjs-com';
+import React, { useState, useEffect } from 'react';
 import './Contact.css';
 
 const Contact = () => {
@@ -9,12 +8,21 @@ const Contact = () => {
     subject: '',
     message: ''
   });
-  
+
   const [status, setStatus] = useState({
     submitted: false,
     submitting: false,
     info: { error: false, msg: null }
   });
+
+  const [emailjs, setEmailjs] = useState(null);
+
+  useEffect(() => {
+    // Dynamically import emailjs-com only on the client side
+    import('emailjs-com').then((module) => {
+      setEmailjs(module);
+    });
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,13 +34,16 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!emailjs) return;
+
     setStatus({
       submitted: false,
       submitting: true,
       info: { error: false, msg: null }
     });
 
-    // EmailJS configuration - you'll need to replace these with your actual service, template, and user IDs
+    // EmailJS configuration - replace with your actual service, template, and user IDs
     emailjs.send(
       'service_ic368nn',  // Replace with your EmailJS service ID
       'template_dm2su6h', // Replace with your EmailJS template ID
@@ -157,7 +168,7 @@ const Contact = () => {
           </div>
           <div className="info-item">
             <i className="icon location-icon"></i>
-            <p>Wagholi,Pune-412207</p>
+            <p>Wagholi, Pune-412207</p>
           </div>
         </div>
       </div>
