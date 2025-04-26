@@ -1,0 +1,159 @@
+/* Navbar.css */
+
+.navbar {
+    background-color: #fff;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Stylish text logo */
+.navbar-logo-text {
+    text-decoration: none;
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+}
+
+.logo-nexo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #007bff;
+    letter-spacing: 1px;
+}
+
+.logo-vate {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #333;
+    letter-spacing: 1px;
+}
+
+.logo-solution {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #666;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-left: 4px;
+}
+
+.navbar-menu {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.navbar-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar-link {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.navbar-link:hover {
+    color: #007bff;
+}
+
+.navbar-cta {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.navbar-cta:hover {
+    background-color: #005dc0;
+}
+
+.navbar-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.hamburger {
+    width: 24px;
+    height: 2px;
+    background: #333;
+    position: relative;
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    background: #333;
+    transition: all 0.3s;
+}
+
+.hamburger::before {
+    top: -8px;
+}
+
+.hamburger::after {
+    top: 8px;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    .navbar-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: center;
+        background-color: #fff;
+        display: none;
+        padding: 1rem 0;
+        gap: 1rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .navbar-menu.active {
+        display: flex;
+    }
+
+    .navbar-links {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .navbar-toggle {
+        display: block;
+    }
+
+    /* Adjust logo size for mobile */
+    .logo-nexo, .logo-vate {
+        font-size: 1.3rem;
+    }
+
+    .logo-solution {
+        font-size: 0.7rem;
+    }
+}
