@@ -18,7 +18,6 @@ const Contact = () => {
   const [emailjs, setEmailjs] = useState(null);
 
   useEffect(() => {
-    // Dynamically import emailjs-com only on the client side
     import('emailjs-com').then((module) => {
       setEmailjs(module);
     });
@@ -43,17 +42,17 @@ const Contact = () => {
       info: { error: false, msg: null }
     });
 
-    // EmailJS configuration - replace with your actual service, template, and user IDs
+    // EmailJS configuration using environment variables
     emailjs.send(
-      'service_ic368nn',  // Replace with your EmailJS service ID
-      'template_dm2su6h', // Replace with your EmailJS template ID
+      process.env.REACT_APP_EMAILJS_SERVICE_ID,  // service ID from .env
+      process.env.REACT_APP_EMAILJS_TEMPLATE_ID, // template ID from .env
       {
         name: formData.name,
         email: formData.email,
         subject: formData.subject,
         message: formData.message
       },
-      'vzrCFom8VVrwUL9Zl'      // Replace with your EmailJS user ID
+      process.env.REACT_APP_EMAILJS_USER_ID      // user ID from .env
     )
       .then(response => {
         setStatus({
@@ -82,19 +81,19 @@ const Contact = () => {
       <div className="contact-card">
         <h2>Get in Touch</h2>
         <p className="contact-intro">Have questions or feedback? We'd love to hear from you!</p>
-        
+
         {status.info.error && (
           <div className="error-message">
             {status.info.msg}
           </div>
         )}
-        
+
         {status.submitted && (
           <div className="success-message">
             {status.info.msg}
           </div>
         )}
-        
+
         <form className="contact-form" onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="name">Name</label>
@@ -108,7 +107,7 @@ const Contact = () => {
               required
             />
           </div>
-          
+
           <div className="form-group">
             <label htmlFor="email">Email</label>
             <input
@@ -121,7 +120,7 @@ const Contact = () => {
               required
             />
           </div>
-          
+
           <div className="form-group">
             <label htmlFor="subject">Subject</label>
             <input
@@ -134,7 +133,7 @@ const Contact = () => {
               required
             />
           </div>
-          
+
           <div className="form-group">
             <label htmlFor="message">Message</label>
             <textarea
@@ -147,7 +146,7 @@ const Contact = () => {
               required
             ></textarea>
           </div>
-          
+
           <button 
             type="submit" 
             className="submit-button"
